@@ -21,14 +21,6 @@ async function main() {
       logger.error('error connecting to MongoDB:', error.message)
     })
 
-  const personalData = new PersonalData({
-    fullName: {
-      value: 'yong Qin',
-      expiry: new Date(),
-    },
-  })
-
-  await personalData.save()
 
   const yoga = createYoga({
     schema,

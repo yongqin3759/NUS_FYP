@@ -11,14 +11,8 @@ function generatePersonalDataObjectFields(t:any){
   let res: {[key: string]: any } = {
     id: t.exposeID('id')
   }
-  for(let fields of PERSONAL_DATA_FIELDS){
-    res[fields] = t.field({
-      type: 'PersonalInfo',
-      nullable: true,
-      resolve: (data: IPersonalData) => {
-        return data[fields as keyof IPersonalData];
-      }
-    }) 
+  for(let field of PERSONAL_DATA_FIELDS){
+    res[field] = t.exposeString(field)
   }
   return res
 }

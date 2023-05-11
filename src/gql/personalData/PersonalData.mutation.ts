@@ -13,11 +13,8 @@ export const PersonalInfoInput = builder.inputType('PersonalInfoInput', {
 
 function generatePersonalDataInputFields(t: PothosSchemaTypes.InputFieldBuilder<PothosSchemaTypes.ExtendDefaultTypes<any>, "InputObject">){ 
   let res: {[key: string]: any } = {}
-  for(let fields of PERSONAL_DATA_FIELDS){
-    res[fields] = t.field({
-      type: PersonalInfoInput,
-      required: false
-    }) 
+  for(let field of PERSONAL_DATA_FIELDS){
+    res[field] = t.string()
   }
   return res
 }

@@ -6,10 +6,10 @@ export interface IPersonalInfo {
 }
 
 export interface IPersonalDataFields{
-  fullName?: IPersonalInfo
-  email?: IPersonalInfo
-  race?: IPersonalInfo
-  address?:IPersonalInfo
+  fullName?: string
+  email?: string
+  race?: string
+  address?:string
 }
 
 export type IPersonalField = keyof IPersonalDataFields
@@ -20,7 +20,7 @@ export interface IPersonalData extends IPersonalDataFields {
 }
 
 export class PersonalDataFieldsClass implements IPersonalDataFields{
-  constructor(public fullName?: IPersonalInfo, public email?: IPersonalInfo, public race?: IPersonalInfo, public address?: IPersonalInfo){
+  constructor(public fullName?: string, public email?: string, public race?: string, public address?: string){
   }
 }
 
@@ -38,7 +38,7 @@ const personalInfoSchema = new Schema<IPersonalInfo>({
   expiry:{type: Date, required: true}, 
 }, {_id: false})
 
-const personalDataSchemaModel = PERSONAL_DATA_FIELDS.reduce((o, key) => Object.assign(o, {[key]: personalInfoSchema}), {});
+const personalDataSchemaModel = PERSONAL_DATA_FIELDS.reduce((o, key) => Object.assign(o, {[key]: String}), {});
 
 
 

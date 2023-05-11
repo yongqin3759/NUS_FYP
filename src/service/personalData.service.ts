@@ -1,4 +1,21 @@
-import PersonalDataModel, { IPersonalDataFields } from '../models/PersonalData.model'
+import ExpiryFieldModel from '../models/ExpiryField.model'
+import PersonalDataModel, { IPersonalDataFields , IPersonalField} from '../models/PersonalData.model'
+
+function createExpiryField(id: string, field: IPersonalField){
+  let expiryFieldModel = new ExpiryFieldModel()
+  expiryFieldModel.fieldName = field
+  expiryFieldModel.id = id
+
+
+  if(field == 'address'){
+    expiryFieldModel.expiry = new Date(new Date().getTime()+(1*24*60*60*1000));
+  }else{
+    expiryFieldModel.expiry = new Date(new Date().getTime()+(2*24*60*60*1000));
+
+  }
+
+  expiryFieldModel.save()
+}
 
 const personalDataService = {
   async findPersonalDataById(id: string) {
@@ -12,6 +29,10 @@ const personalDataService = {
   },
   async createPersonalData(personalDataFields: IPersonalDataFields) {
     let personalData = new PersonalDataModel(personalDataFields)
+
+    for(let field in personalDataFields){
+      createExpiryField( personalData.id ,field as keyof IPersonalDataFields,)
+    }
     return await personalData.save()
   },
 
