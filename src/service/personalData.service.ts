@@ -8,9 +8,9 @@ function createExpiryField(id: string, field: IPersonalField){
 
 
   if(field == 'address'){
-    expiryFieldModel.expiry = new Date(new Date().getTime()+(1*24*60*60*1000));
+    expiryFieldModel.expireAt = new Date(new Date().getTime()+(1000));
   }else{
-    expiryFieldModel.expiry = new Date(new Date().getTime()+(2*24*60*60*1000));
+    expiryFieldModel.expireAt = new Date(new Date().getTime()+(8000));
 
   }
 

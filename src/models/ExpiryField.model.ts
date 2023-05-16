@@ -1,18 +1,25 @@
 import mongoose, { Schema } from "mongoose"
 import { IPersonalField } from "./PersonalData.model"
 
+
 export interface IFieldExpiry {
   id: string
   personalDataId: string
   fieldName: IPersonalField
-  expiry: Date
+  value: string
+  expireAt: Date
 }
 
 const fieldExpirySchema = new Schema<IFieldExpiry>({
   id: String!,
   personalDataId: String!,
   fieldName: String!,
-  expiry: Date!
+  value: String!,
+  expireAt: {
+    type: Date,
+    default: Date.now() + 10 * 60 * 1000,   // expires in 10 minutes
+    index: { expires: '0s' }
+  }
 });
 
 
