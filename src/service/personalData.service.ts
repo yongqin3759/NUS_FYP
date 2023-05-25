@@ -7,12 +7,8 @@ function createExpiryField(id: string, field: IPersonalField){
   expiryFieldModel.id = id
 
 
-  if(field == 'address'){
-    expiryFieldModel.expireAt = new Date(new Date().getTime()+(1000));
-  }else{
-    expiryFieldModel.expireAt = new Date(new Date().getTime()+(8000));
-
-  }
+  
+  expiryFieldModel.expireAt = new Date(new Date().getTime()+(80000));
 
   expiryFieldModel.save()
 }
@@ -23,8 +19,6 @@ const personalDataService = {
   },
 
   async findAllPersonalData() {
-    console.log('All Personal Data')
-    console.log(await PersonalDataModel.find())
     return await PersonalDataModel.find()
   },
   async createPersonalData(personalDataFields: IPersonalDataFields) {
